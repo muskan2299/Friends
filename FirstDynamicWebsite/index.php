@@ -9,17 +9,7 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge">
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
-        <style>
-            @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
-
-                html{    background:url(http://thekitemap.com/images/feedback-img.jpg) no-repeat;
-                background-size: cover;
-                height:100%;
-                }
-                #feedback-page{
-                text-align:center;
-                }
-        </style>        
+        <link rel="stylesheet" src="index.css">
     </head>
     <body>
     <nav class="navbar navbar-fixed-top navbar-light bg-faded">
@@ -33,6 +23,8 @@
                     </li>
             </ul>
         </nav>
+
+
 
         <?php
             //Data base Info
@@ -53,15 +45,29 @@
             $result= $conn->query($sql);
             if($result->num_rows>0){
                 while($rows=$result->fetch_assoc()){
-                    ?>	<br>
-                    <br>
-                    <br>
-                    <!-- USING HTML HERE : Here I am using php within html tags -->	
-                    <p> Name : 
-                    <?php 
-                        echo $rows["Name"] . " " . $rows["Age"]. " " . $rows["Description"];
-                    ?>
-                     </p>
+                    ?>	
+                    <div class='container'>
+                        <div class='card medium'>
+                            <div class='card-image'>
+                            <img src='joker.png'>
+                    </div>
+                         <div class='card-body'>
+                            <div class='card-text'>
+                                 <h3> Name: 
+                                 <?php
+                                 echo $rows["Name"]
+                                 ?>
+                                 </h3>
+                                 <p> Birthday:
+                                 <?php
+                                 echo $rows["Age"]
+                                 ?>
+                                 </p>
+                                 <p> About:
+                                 <?php
+                                 echo $rows["Description"]
+                                 ?>
+                                 </p>
                     <?php  
                 }
             } 
@@ -69,6 +75,6 @@
                      
              // Closing mysql connection
              $conn->close();
-            ?>
+            ?>        
     </body>
 </html>
